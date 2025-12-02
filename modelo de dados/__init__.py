@@ -1,1 +1,0 @@
-#  aula 3 de full stack basico - criando a classe Base para o modelo de dados

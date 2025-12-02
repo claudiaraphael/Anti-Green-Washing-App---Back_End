@@ -2,6 +2,9 @@ from distro import name
 from flask import Flask, request, jsonify
 import requests
 
+# TO DO:
+# - separate responsibilities in this file into different files: run.py, __init__.py, OFF endpoints, CRUD endpoints
+
 app = Flask(__name__)
 
 OFF_BASE = 'https://world.openfoodfacts.net'

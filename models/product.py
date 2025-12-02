@@ -2,12 +2,14 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from typing import Union
-
-from data_model import Base, Comment
-
+from Base import Base
 
 
-class Product(Base) {
+# no flask o modelo de dados é dividido em módulos diferentes para diferentes entidades, diferente da fastAPI
+
+
+
+class Product(Base):
     __tablename__ = 'product'
 
     id = Column("pk_product", Integer, primary_key=True)
@@ -18,7 +20,7 @@ class Product(Base) {
     # relacionamento do objeto Product com o Comment
     comments = relationship("Comment")
 
-}
+
 
 def _init__(self, name:str, barcode:int,
              date_inserted:Union[DateTime, None] = None):
@@ -33,7 +35,7 @@ def _init__(self, name:str, barcode:int,
     self.name = name
     self.barcode = barcode
 
-    # se não for informada, será o data exata da inserção no banco
+    # se não for informada, será a data exata da inserção no banco
     if date_inserted:
         self.date_inserted = date_inserted
 
