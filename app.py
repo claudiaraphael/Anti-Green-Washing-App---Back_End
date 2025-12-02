@@ -76,10 +76,6 @@ def get_produto(query: ProdutoSearchSchema):
         session.close()  # ✅ IMPORTANTE: sempre fechar session
 
 # 3 - endpoint to get product details by barcode
-@app.get('/api/barcode/<barcode>')
-def get_product_by_barcode(barcode):
-    response = requests.get(OFF_API_BARCODE.format(barcode=barcode))
-    return jsonify(response.json())
 
 # 4 - endpoint to get product history (placeholder)
 @app.get('/api/products_history')

@@ -29,3 +29,8 @@ def search_off_product(product_name):
         error_msg = f"Erro ao consultar OFF API: {str(e)}"
         logger.error(error_msg)
         return {"message": error_msg}, 502
+    
+@app.get('/api/barcode/<barcode>')
+def get_product_by_barcode(barcode):
+    response = requests.get(OFF_API_BARCODE.format(barcode=barcode))
+    return jsonify(response.json())
