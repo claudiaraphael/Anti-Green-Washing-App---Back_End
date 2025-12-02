@@ -1,4 +1,3 @@
-from distro import name
 from flask import Flask, request, jsonify
 import requests
 
@@ -10,8 +9,6 @@ app = Flask(__name__)
 OFF_BASE = 'https://world.openfoodfacts.net'
 # fetch products by name
 OFF_API_PRODUCT = OFF_BASE + '/cgi/search.pl?search_terms={name}&search_simple=1&action=process&json=1'
-# or try
-OFF_API_PRODUCT_2 = OFF_BASE + '/cgi/search.pl'
 # fetch product by barcode:
 OFF_API_BARCODE = OFF_BASE + '/api/v2/product/{barcode}'
 
