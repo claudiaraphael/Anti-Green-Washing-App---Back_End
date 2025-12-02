@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from datetime import datetime
 from typing import Union
 
-from model.base import Base  # ✅ CORRETO
+from model.base import Base 
 
 class Comment(Base):
     __tablename__ = 'comment'
@@ -15,19 +15,12 @@ class Comment(Base):
     
     product = Column(Integer, ForeignKey('product.pk_product'), nullable=False)
 
-    def __init__(self, autor:str, texto:str, n_estrela:int = 0, data_insercao:Union[DateTime, None] = None):
-        """
-        Cria um Comentário
-
-        Arguments:
-            texto: o texto de um comentário.
-            data_insercao: data de quando o comentário foi feito ou inserido
-                           à base
-        """
-        self.autor = autor
-        self.texto = texto
-        self.n_estrela = n_estrela
-        if data_insercao:
-            self.data_insercao = data_insercao
+    def __init__(self, author: str, text: str, n_estrela: int = 0, 
+             date_inserted: Union[datetime, None] = None):
+    self.author = author
+    self.text = text
+    self.n_estrela = n_estrela
+    if date_inserted:
+        self.date_inserted = date_inserted
 
 

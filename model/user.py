@@ -2,7 +2,12 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from typing import Union
-from Base import Base
+from model.base import Base
 
 class User(Base):
-    __table__ = 'User'
+    __tablename__ = 'User'
+
+    id = Column(Integer, primary_key=True)
+    username = Column(String(80), unique=True, nullable=False)
+    email = Column(String(120), unique=True, nullable=False)
+    date_created = Column(DateTime, default=datetime.now())
