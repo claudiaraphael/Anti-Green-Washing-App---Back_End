@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
 from datetime import datetime
 from typing import Union
 
-from  Base import Base
+from model.base import Base  # ✅ CORRETO
 
 class Comment(Base):
     __tablename__ = 'comment'
