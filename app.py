@@ -1,6 +1,8 @@
-from flask import Flask, request, jsonify
-import requests
+from flask_openapi3 import OpenAPI
+from model import Session, Produto
 
+from schemas import ProductSchema, ProductViewSchema, ErrorSchema
+from logger import logger
 # TO DO:
 # - separate responsibilities in this file into different files: run.py, __init__.py, OFF endpoints, CRUD endpoints
 
@@ -19,24 +21,33 @@ def home():
     return "Welcome!"
 
 # adicionar o endpoint de adicionar produto (C DO CRUD)
-def add_produto():
-    session = Session()
-    produto = Produto(
-        nome=request.form.get("nome"),
-        quantidade=request.form.get("quantidade"),
-        valor=request.form.get("valor")
-    )
-    try:
-        # adicionando produto
-        session.add(produto)
-        # efetivando o camando de adição de novo item na tabela
-        session.commit()
-        return jsonify(produto.__dict__), 201
-    except Exception as e:
-        session.rollback()
-        return jsonify({"error": str(e)}), 500
 
-# @app.route('/add_product', methods=['POST'])
+@app.post('/add_product', tags=[product_tag],
+        responses={"200": ProductViewSchema, "409": ErrorSchema, "400": ErrorSchema}  )
+def add_product(form: ProductSchema):
+    """ Adds a new product to the data base """
+    product = Product(
+        name=form.name,
+        barcode=form.barcode
+    )
+    logger.debug(f"Adding a product: '{product}'")
+
+    try:
+        session = Session()
+        session.add(product)
+        session.commit()
+        logger.debug(f"Product added successfully: '{product.name}'")
+        return product, 200
+    
+    except IntegrityError as e:
+        error_msg = "Product is alredy in the data base"
+        logger.warning(f"Error adding '{product.name}': {error_msg}")
+        return {"message": error_msg}, 409
+    
+    except Exception as e:
+        error_msg = "Could not add the product"
+        logger.warning(f"Erro: {error_msg}")
+        return {"message": error_msg}, 400
 
 # 2 - endpoint to get product details by name from OFF API
 @app.route('/api/product/<name>')
