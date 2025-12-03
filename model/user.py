@@ -11,3 +11,6 @@ class User(Base):
     username = Column(String(80), unique=True, nullable=False)
     email = Column(String(120), unique=True, nullable=False)
     date_created = Column(DateTime, default=datetime.now())
+
+    products = relationship("Product", back_populates="owner")
+    comments = relationship("Comment", back_populates="author")

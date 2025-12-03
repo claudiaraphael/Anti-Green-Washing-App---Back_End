@@ -5,14 +5,10 @@ from schemas import ProductSchema, ProductViewSchema, ErrorSchema
 from logger import logger
 # TO DO:
 # - separate responsibilities in this file into different files: run.py, __init__.py, OFF endpoints, CRUD endpoints
-
+# import ennvironment variables
 app = Flask(__name__)
 
-OFF_BASE = 'https://world.openfoodfacts.net'
-# fetch products by name
-OFF_API_PRODUCT = OFF_BASE + '/cgi/search.pl?search_terms={name}&search_simple=1&action=process&json=1'
-# fetch product by barcode:
-OFF_API_BARCODE = OFF_BASE + '/api/v2/product/{barcode}'
+
 
 # Read Routes
 # 1 - endpoint to check if the server is running

@@ -17,10 +17,10 @@ class Comment(Base):
 
     def __init__(self, author: str, text: str, n_estrela: int = 0, 
              date_inserted: Union[datetime, None] = None):
-    self.author = author
-    self.text = text
-    self.n_estrela = n_estrela
-    if date_inserted:
-        self.date_inserted = date_inserted
+        self.author = author
+        self.text = text
+        self.n_estrela = n_estrela
+        if date_inserted:
+            self.date_inserted = date_inserted
 
 
