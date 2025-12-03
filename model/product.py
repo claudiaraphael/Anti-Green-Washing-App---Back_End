@@ -2,6 +2,8 @@
 from extensions import db  # Importa o db globalmente definido
 from datetime import datetime
 from sqlalchemy.orm import relationship
+from model.comment import Comment
+from extensions import db  # Importa o db globalmente definido
 
 class Product(db.Model):
     __tablename__ = 'product'
