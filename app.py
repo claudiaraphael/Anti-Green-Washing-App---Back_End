@@ -1,3 +1,7 @@
+from model.user import User
+from model.comment import Comment
+from model.product import Product
+from extensions import db
 from flask import Flask, jsonify
 from sqlalchemy.exc import IntegrityError
 from urllib.parse import unquote
@@ -12,12 +16,6 @@ OFF_BASE = os.environ.get('OFF_BASE')
 OFF_PRODUCT_NAME = os.environ.get('OFF_API_PRODUCT')
 OFF_BARCODE = os.environ.get('OFF_BARCODE')
 
-
-from extensions import db
-
-from model.product import Product
-from model.comment import Comment
-from model.user import User
 
 # Application Factory: create app
 
@@ -59,13 +57,11 @@ def create_app(config_name='development'):
         return "Welcome!"
 
 
-    # Run the Flask app
-    # the if statement with __name == '__main__' means that this code block will only be executed if the script is run directly (not imported as a module in another script).
-    if __name__ == '__main__':
-        app.run(debug=True)
 
 
 
+    return app
+# Como você já implementou o Application Factory Pattern (create_app) e está usando o Flask-SQLAlchemy, a criação da base de dados e das tabelas é automática na inicialização.
 
 # Open Food Facts API
 # criar codigo para consulta de dados na base de dados da API e outro pra Open Food Facts API.
