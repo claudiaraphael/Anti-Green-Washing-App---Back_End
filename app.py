@@ -55,6 +55,18 @@ def create_app(config_name='development'):
     @app.route('/')
     def home():
         return "Welcome!"
+    
+    
+    # get info from barcode
+    @app.route('/scan_barcode')
+    def scan_barcode():
+        response = db.get('OFF_BARCODE', 200)
+        product_data = response.jsonify()
+        return product_data
+    
+    # test barcode route: fail/pass
+    
+
 
 
 
