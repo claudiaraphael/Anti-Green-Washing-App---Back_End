@@ -3,6 +3,7 @@ from model.comment import Comment
 from model.product import Product
 from extensions import db
 from flask import Flask, jsonify
+from flask import render_template
 from sqlalchemy.exc import IntegrityError
 from urllib.parse import unquote
 import requests
@@ -53,8 +54,8 @@ def create_app(config_name='development'):
 
 
     @app.route('/')
-    def home():
-        return "Welcome!"
+    def homepage():
+        return render_template('index.html')
     
     
     # get info from barcode
