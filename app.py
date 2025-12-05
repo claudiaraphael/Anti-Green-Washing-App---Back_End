@@ -1,6 +1,3 @@
-from model.user import User
-from model.comment import Comment
-from model.product import Product
 from extensions import db
 from flask import Flask, jsonify
 from flask import render_template
@@ -9,6 +6,10 @@ from urllib.parse import unquote
 import requests
 import os
 from dotenv import load_dotenv
+
+from model.user import User
+from model.comment import Comment
+from model.product import Product
 
 # load environment variables
 load_dotenv()
@@ -19,8 +20,6 @@ OFF_BARCODE = os.environ.get('OFF_BARCODE')
 
 
 # Application Factory: create app
-
-
 def create_app(config_name='development'):
     app = Flask(__name__)
 
